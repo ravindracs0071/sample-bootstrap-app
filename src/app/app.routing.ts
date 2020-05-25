@@ -9,17 +9,28 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
-
+import { AuthGuard } from "./auth-guard";
 
 const appRoutes: Routes = [
     { 
         path: '',
+        pathMatch: 'full',
         component: PageLayoutComponent,
+        canActivate: [AuthGuard],
         children: [
-            { path: '', component: HomeComponent, pathMatch: 'full' },
+            { path: '', component: HomeComponent },
             { path: 'about', component: AboutComponent },
             { path: 'test', loadChildren: './common-shared/common-shared.module#CommonSharedModule' },
-        ]
+        ],
+        
+    },
+    { 
+        path: 'login',
+        component: LoginComponent
+    },
+    { 
+        path: 'register',
+        component: RegisterComponent
     },
     { path: '**', redirectTo: '' }
 ] ;

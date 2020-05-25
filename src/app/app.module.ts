@@ -14,6 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
+import { AuthGuard } from "./auth-guard";
+import { UserService } from "./user.service";
+
 import { routing } from "./app.routing";
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { routing } from "./app.routing";
     HttpModule, 
     routing
   ],
-  providers: [],
+  providers: [AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
